@@ -8,16 +8,9 @@ def encrypt(message, shift):
     # the module alphabet contains a dictionary with each letter assigned to its number in the alphabet e.g: b = 2, y = 25
     # if the element is a symbol or number I'm just randomizing a letter for the output
     lower_case, upper_case = "abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    symbols = ".,!?-$%@;"
-    numbers = "0123456789"
 
     for ind, element in enumerate(message):
-        if element not in alpha and element not in symbols and element not in upper_case \
-        and element not in numbers:
-            output += " "
-        
-        # check if element is a number:
-        if element in numbers or element in symbols:
+        if element not in alpha:
             output += element
             
         # check if element is upper case:
