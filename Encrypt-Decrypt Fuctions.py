@@ -1,5 +1,4 @@
 from alphabet import alpha, upper
-from random import choice
 
 
 def encrypt(message, shift):
