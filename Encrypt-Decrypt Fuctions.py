@@ -10,7 +10,7 @@ def encrypt(message, shift):
     lower_case, upper_case = "abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
     for ind, element in enumerate(message):
-        if element not in alpha:
+        if element not in alpha or element not in upper_case:
             output += element
             
         # check if element is upper case:
