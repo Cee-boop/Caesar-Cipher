@@ -14,13 +14,13 @@ def encrypt(message, shift):
 
     for ind, element in enumerate(message):
         if element not in alpha and element not in symbols and element not in upper_case \
-                and element not in numbers:
+        and element not in numbers:
             output += " "
         
         # check if element is a number:
-        if element in numbers:
-            output += choice(lower_case)
-
+        if element in numbers or element in symbols:
+            output += element
+            
         # check if element is upper case:
         if element.isupper():
             target = upper[element] + shift
@@ -28,10 +28,6 @@ def encrypt(message, shift):
                 target = target - 26
 
             output += upper_case[target - 1]
-        
-        # check if element is a symbol:
-        if element in symbols:
-            output += choice(lower_case)
 
         if element in alpha:
             target = alpha[element] + shift
