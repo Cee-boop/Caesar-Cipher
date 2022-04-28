@@ -5,8 +5,9 @@ from random import choice
 def encrypt(message, shift):
     output = ""
 
-    # checks each letter in dictionary and adds the total sum to find the shift using indexing in "data"
+    # checks each element in dictionary and adds the total sum to find the shift using indexing in "data"
     # the module alphabet contains a dictionary with each letter assigned to its number in the alphabet e.g: b = 2, y = 25
+    # if the element is a symbol or number I'm just randomizing a letter for the output
     lower_case, upper_case = "abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     symbols = ".,!?-$%@;"
     numbers = "0123456789"
@@ -15,7 +16,8 @@ def encrypt(message, shift):
         if element not in alpha and element not in symbols and element not in upper_case \
                 and element not in numbers:
             output += " "
-
+        
+        # check if element is a number:
         if element in numbers:
             output += choice(lower_case)
 
@@ -26,7 +28,8 @@ def encrypt(message, shift):
                 target = target - 26
 
             output += upper_case[target - 1]
-
+        
+        # check if element is a symbol:
         if element in symbols:
             output += choice(lower_case)
 
@@ -41,6 +44,7 @@ def encrypt(message, shift):
     return [output, message]
 
 
+# checking if word is stored in encryption dictionary to decode:
 def decrypt(encryption, word):
     if word in encryption:
         return encryption[word]
