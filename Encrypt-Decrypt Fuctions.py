@@ -4,15 +4,20 @@ from alphabet import alpha, upper
 def encrypt(message, shift):
     output = ""
 
-    # checks each element in dictionary and adds the total sum to find the shift using indexing in "data"
+    # checks each letter in dictionary and adds the total sum to find the shift using indexing in "data"
     # the module alphabet contains a dictionary with each letter assigned to its number in the alphabet e.g: b = 2, y = 25
-    # if the element is a symbol or number I'm just randomizing a letter for the output
     lower_case, upper_case = "abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    symbols = ".,!?-$%@;"
+    numbers = "0123456789"
 
     for ind, element in enumerate(message):
-        if element not in alpha or element not in upper_case:
+        if element not in alpha and element not in symbols and element not in upper_case \
+        and element not in numbers:
+            output += " "
+
+        if element in numbers or element in symbols:
             output += element
-            
+
         # check if element is upper case:
         if element.isupper():
             target = upper[element] + shift
@@ -32,10 +37,8 @@ def encrypt(message, shift):
     return [output, message]
 
 
-# checking if word is stored in encryption dictionary to decode:
 def decrypt(encryption, word):
     if word in encryption:
         return encryption[word]
 
     return "Couldn't find word."
-
